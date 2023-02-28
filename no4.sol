@@ -1,19 +1,16 @@
 pragma solidity ^0.8.0;
 contract mappingstudentdata{
-    struct studentDetails{
-        string name;
-        string class;
-        uint age;
-        uint percentage;
+    struct marks{
+        uint mark;
+    }
+   
+    mapping(string => marks) student;
+
+    function insertdata(string memory Name,uint Mark) public{
+        student[Name] = marks(Mark);
     }
 
-    mapping(uint => studentDetails) student;
-
-    function insertdata(string memory Name,string memory Class,uint Age,uint Percentage,uint Rollno) public{
-        student[Rollno] = studentDetails(Name,Class,Age,Percentage);
-    }
-
-    function getdata(uint Rollno)public view returns(string memory,string memory,uint,uint){
-        return (student[Rollno].name,student[Rollno].class,student[Rollno].age,student[Rollno].percentage);
+    function getdata(string memory Name)public view returns(uint){
+        return (student[Name].mark);
     }
 }
